@@ -15,7 +15,7 @@ export function Summary() {
 
       <SummaryCard variant='darker'>
         <header>
-          <span>Entradas</span>
+          <span>Saidas</span>
           <ArrowCircleDown size={32} color="#f75a68"/>
         </header>
 
@@ -24,7 +24,7 @@ export function Summary() {
 
       <SummaryCard variant='green'>
         <header>
-          <span>Entradas</span>
+          <span>Saldo</span>
           <CurrencyDollar size={32} color="#fff"/>
         </header>
 
