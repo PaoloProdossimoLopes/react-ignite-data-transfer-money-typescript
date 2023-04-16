@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const TransactionContainer = styled.main`
   width: 100%;
   max-width: 1120px;
-  margin: 0 auto;
+  margin: 1.5rem auto;
   padding: 0 1.5rem;
 `
 
