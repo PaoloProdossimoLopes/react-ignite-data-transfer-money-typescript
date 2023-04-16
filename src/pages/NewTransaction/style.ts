@@ -69,8 +69,10 @@ export const CloseButton = styled(Dialog.Close)`
   border: 0;
   top: 1.5rem;
   right: 1.5rem;
+
   /* Remover o tamanho extra gerado pela caixa fo focus */
   line-height: 0;
+  
   cursor: pointer;
   color: ${props => props.theme["gray-500"]};
 `
