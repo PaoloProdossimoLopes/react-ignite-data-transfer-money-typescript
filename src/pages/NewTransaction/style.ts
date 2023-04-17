@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import * as Dialog from '@radix-ui/react-dialog';
-
+import * as RadioButton from '@radix-ui/react-radio-group';
 
 export const NewTransactionContainer = styled.div``
 
@@ -72,7 +72,55 @@ export const CloseButton = styled(Dialog.Close)`
 
   /* Remover o tamanho extra gerado pela caixa fo focus */
   line-height: 0;
-  
+
   cursor: pointer;
   color: ${props => props.theme["gray-500"]};
+`
+
+export const TransactionType = styled(RadioButton.Root)`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 0.5rem;
+`
+
+interface TransactionTypeButtonProps {
+  variant: 'income' | 'outcome'
+}
+
+export const TransactionTypeButton = styled(RadioButton.Item)<TransactionTypeButtonProps>`
+  background-color: ${props => props.theme["gray-700"]};
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border: 0;
+  color: ${props => props.theme["gray-100"]};
+
+  svg {
+    color: ${props => {
+      return props.variant === 'income'
+        ? props.theme["green-300"]
+        : props.theme["red-300"]
+    }};
+  }
+
+  &[data-state='checked'] {
+    color: ${props => props.theme.white};
+    background: ${props => {
+      return props.variant === 'income'
+        ? props.theme["green-500"]
+        : props.theme["red-500"]
+    }};
+
+    svg {
+      color: ${props => props.theme.white}
+    }
+  }
+
+  &[data-state='unchecked']:hover {
+    background-color: ${props => props.theme["gray-600"]};
+  }
 `
