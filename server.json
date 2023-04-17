@@ -1,0 +1,20 @@
+{
+  "transaction": [
+    {
+      "id": 1,
+      "description": "Desenvolvimento de site",
+      "type": "income",
+      "category": "Venda",
+      "price": 300.00,
+      "timestamp": "2023-04-17T22:43:35.423Z"
+    },
+    {
+      "id": 2,
+      "description": "Hamburger",
+      "type": "outcome",
+      "category": "Alimento",
+      "price": 50.00,
+      "timestamp": "2023-04-17T22:40:35.423Z"
+    }
+  ]
+}
