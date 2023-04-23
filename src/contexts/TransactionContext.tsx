@@ -20,6 +20,7 @@ interface CreateTrasactionRequest {
 
 interface TransactionContextType {
   transactions: Transaction[]
+  isFetching: boolean
   fetchTransactions: (query?: string) => Promise<void>
   createTransaction: (data: CreateTrasactionRequest) => Promise<void>
 }
@@ -32,8 +33,11 @@ export const TransactionContext = createContext({} as TransactionContextType)
 
 export function TransactionProvider({ children }: TransactionProviderProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([])
+  const [isFetching, setIsFetching] = useState(true)
 
   async function fetchTransactions(query?: string) {
+    setIsFetching(true)
+
     const response = await api.get('/transaction', {
       params: {
         _sort: 'timestamp',
@@ -44,11 +48,17 @@ export function TransactionProvider({ children }: TransactionProviderProps) {
 
     const json = response.data
     setTransactions(json)
+
+    setIsFetching(false)
   }
 
   async function createTransaction(data: CreateTrasactionRequest) {
+    setIsFetching(true)
+
     const response = await api.post('/transaction', { ...data })
     setTransactions((state) => [...state, response.data])
+
+    setIsFetching(false)
   }
 
   useEffect(() => {
@@ -57,7 +67,7 @@ export function TransactionProvider({ children }: TransactionProviderProps) {
 
   return (
     <TransactionContext.Provider
-      value={{ transactions, fetchTransactions, createTransaction }}
+      value={{ transactions, isFetching, fetchTransactions, createTransaction }}
     >
       {children}
     </TransactionContext.Provider>

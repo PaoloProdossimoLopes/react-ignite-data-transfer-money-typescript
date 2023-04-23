@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { TransactionContext } from '../contexts/TransactionContext'
 
 export function useSummary() {
-  const { transactions } = useContext(TransactionContext)
+  const { transactions, isFetching } = useContext(TransactionContext)
   const sumary = transactions.reduce(
     (accumulator, transaction) => {
       const price = transaction.price
@@ -20,5 +20,5 @@ export function useSummary() {
     { income: 0, outcome: 0, total: 0 },
   )
 
-  return sumary
+  return { sumary, isFetching }
 }
