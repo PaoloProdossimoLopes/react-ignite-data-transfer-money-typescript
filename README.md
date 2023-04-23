@@ -13,6 +13,7 @@ You can see the figma design for this application [here](https://www.figma.com/f
 - [Json server](https://github.com/typicode/json-server)
 - [Radix](https://www.radix-ui.com/)
 - ESLint ([Rocketseat config]()) *obs: needs to install vscode extension*
+- [React Loader Spinner](https://www.npmjs.com/package/react-loader-spinner)
 <!-- - [React router DOM]() -->
 <!-- - React Hook Form (+ Hook Form Resolvers) -->
 <!-- - Zod -->

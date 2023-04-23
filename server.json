@@ -31,6 +31,14 @@
       "type": "income",
       "timestamp": "2023-04-23T12:28:56.085Z",
       "id": 4
+    },
+    {
+      "description": "Batata",
+      "price": 32,
+      "category": "Comida",
+      "type": "outcome",
+      "timestamp": "2023-04-23T16:49:51.093Z",
+      "id": 5
     }
   ]
 }

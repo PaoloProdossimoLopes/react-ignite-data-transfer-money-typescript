@@ -14,6 +14,7 @@ import {
 
 export function Transactions() {
   const { transactions, isFetching } = useContext(TransactionContext)
+
   return (
     <div>
       <Header />
@@ -22,7 +23,7 @@ export function Transactions() {
       <TransactionContainer>
         <SearchForm />
 
-        {isFetching && (
+        {isFetching ? (
           <LoaderContainer>
             <ThreeDots
               height="80"
@@ -34,9 +35,43 @@ export function Transactions() {
               visible={true}
             />
           </LoaderContainer>
+        ) : (
+          <TransactionTable>
+            <tbody>
+              {transactions.map((transaction) => {
+                return (
+                  <tr key={transaction.id}>
+                    <td width="50%">{transaction.description}</td>
+                    <td>
+                      <PriceHighlight variant={transaction.type}>
+                        {transaction.type === 'outcome' && '- '}
+                        {priceFormatter.format(transaction.price)}
+                      </PriceHighlight>
+                    </td>
+                    <td>{transaction.category}</td>
+                    <td>13/04/2022</td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </TransactionTable>
         )}
 
-        <TransactionTable>
+        {/* {isFetching && (
+          <LoaderContainer>
+            <ThreeDots
+              height="80"
+              width="80"
+              radius="9"
+              color="#00875F"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              visible={true}
+            />
+          </LoaderContainer>
+        )} */}
+
+        {/* <TransactionTable>
           <tbody>
             {transactions.map((transaction) => {
               return (
@@ -54,7 +89,7 @@ export function Transactions() {
               )
             })}
           </tbody>
-        </TransactionTable>
+        </TransactionTable> */}
       </TransactionContainer>
     </div>
   )
