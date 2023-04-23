@@ -5,6 +5,8 @@ import { CloseButton, Content, NewTransactionContainer, Overlay, TransactionType
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as Dialog from '@radix-ui/react-dialog';
+import { useContext } from "react";
+import { TransactionContext } from "../../contexts/TransactionContext";
 
 const newTransactionSchema = z.object({
   description: z.string(),
@@ -16,15 +18,18 @@ const newTransactionSchema = z.object({
 type NewTransactionFormInputs = z.infer<typeof newTransactionSchema>
 
 export function NewTransaction() {
-  const { control, register, handleSubmit, formState: {isSubmitting} } = useForm<NewTransactionFormInputs>({
+  const { createTransaction } = useContext(TransactionContext)
+  const { control, register, handleSubmit, formState: {isSubmitting}, reset } = useForm<NewTransactionFormInputs>({
     resolver: zodResolver(newTransactionSchema),
     defaultValues: {
       type: "income"
     }
   })
 
-  function handleCreateNewTransaction(data: NewTransactionFormInputs) {
-
+  async function handleCreateNewTransaction(data: NewTransactionFormInputs) {
+    const { description, price, category, type } = data
+    await createTransaction({ description, price, category, type, timestamp: (new Date()).toISOString() })
+    reset()
   }
 
   return (
