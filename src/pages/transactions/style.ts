@@ -40,3 +40,11 @@ export const PriceHighlight = styled.span<PriceHighlightProps>`
       : props.theme['red-500']
   }};
 `
+
+export const LoaderContainer = styled.div`
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${(props) => props.theme['green-500']};
+`

@@ -1,13 +1,19 @@
 import { useContext } from 'react'
+import { ThreeDots } from 'react-loader-spinner'
 import { Header } from '../../components/Header'
 import { SearchForm } from '../../components/SearchForm'
 import { Summary } from '../../components/Summary'
 import { TransactionContext } from '../../contexts/TransactionContext'
 import { priceFormatter } from '../../utils/formatter'
-import { PriceHighlight, TransactionContainer, TransactionTable } from './style'
+import {
+  LoaderContainer,
+  PriceHighlight,
+  TransactionContainer,
+  TransactionTable,
+} from './style'
 
 export function Transactions() {
-  const { transactions } = useContext(TransactionContext)
+  const { transactions, isFetching } = useContext(TransactionContext)
   return (
     <div>
       <Header />
@@ -15,6 +21,20 @@ export function Transactions() {
 
       <TransactionContainer>
         <SearchForm />
+
+        {isFetching && (
+          <LoaderContainer>
+            <ThreeDots
+              height="80"
+              width="80"
+              radius="9"
+              color="#00875F"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              visible={true}
+            />
+          </LoaderContainer>
+        )}
 
         <TransactionTable>
           <tbody>
