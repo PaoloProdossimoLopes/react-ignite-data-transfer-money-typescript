@@ -3,7 +3,7 @@ import { api } from '../lib/axios'
 
 interface Transaction {
   id: number
-  description: string,
+  description: string
   type: 'income' | 'outcome'
   price: number
   category: string
@@ -11,7 +11,7 @@ interface Transaction {
 }
 
 interface CreateTrasactionRequest {
-  description: string,
+  description: string
   type: 'income' | 'outcome'
   price: number
   category: string
@@ -31,7 +31,6 @@ interface TransactionProviderProps {
 export const TransactionContext = createContext({} as TransactionContextType)
 
 export function TransactionProvider({ children }: TransactionProviderProps) {
-
   const [transactions, setTransactions] = useState<Transaction[]>([])
 
   async function fetchTransactions(query?: string) {
@@ -40,7 +39,7 @@ export function TransactionProvider({ children }: TransactionProviderProps) {
         _sort: 'timestamp',
         _order: 'desc',
         q: query,
-      }
+      },
     })
 
     const json = response.data
@@ -49,13 +48,17 @@ export function TransactionProvider({ children }: TransactionProviderProps) {
 
   async function createTransaction(data: CreateTrasactionRequest) {
     const response = await api.post('/transaction', { ...data })
-    setTransactions(state => [...state, response.data])
+    setTransactions((state) => [...state, response.data])
   }
 
-  useEffect(() => { fetchTransactions() }, [])
+  useEffect(() => {
+    fetchTransactions()
+  }, [])
 
   return (
-    <TransactionContext.Provider value={{ transactions, fetchTransactions, createTransaction }}>
+    <TransactionContext.Provider
+      value={{ transactions, fetchTransactions, createTransaction }}
+    >
       {children}
     </TransactionContext.Provider>
   )

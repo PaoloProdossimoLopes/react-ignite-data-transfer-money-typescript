@@ -1,8 +1,8 @@
-import { HeaderContainer, HeaderContent, NewTransactionButton } from "./style";
+import { HeaderContainer, HeaderContent, NewTransactionButton } from './style'
 
-import * as Dialog from "@radix-ui/react-dialog";
-import igniteLogoImage from '../../assets/logo-ignite.svg';
-import { NewTransaction } from "../../pages/NewTransaction";
+import * as Dialog from '@radix-ui/react-dialog'
+import igniteLogoImage from '../../assets/logo-ignite.svg'
+import { NewTransaction } from '../../pages/NewTransaction'
 
 export function Header() {
   return (
