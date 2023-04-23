@@ -56,8 +56,13 @@ export const Content = styled(CentralizedContent)`
       cursor: pointer;
       transition: 0.2s;
 
-      &:hover {
+      &:not(:disabled):hover {
         background-color: ${props => props.theme["green-700"]};
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
       }
     }
   }
